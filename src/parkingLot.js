@@ -93,14 +93,25 @@ class PARKINGLOT {
             //kill the car or do something here
             console.log("CAR CRASHED");
         } else {
-            let won = false;
-
             let winPoly = topLeftToPoly(this.winBox);
 
-            let hit = collidePolyPoly(carPoly, winPoly, true);
-            if (hit) {
-                console.log("win");
-                won = true;
+            // if the car is colliding or top right corner
+            if (collidePolyPoly(carPoly, winPoly, true) || collidePointPoly(carPoly[0].x, carPoly[0].y, winPoly)) {
+                //check that each of the car's 4 corners are inside the win zone
+                let wonSoFar = true;
+                //console.log("collided");
+                for (let i = 0; i < 4; i++) {
+                    //console.log(carPoly, winPoly);
+                    let collision = collidePointPoly(carPoly[i].x, carPoly[i].y, winPoly);
+                    //console.log(`collision ${collision} ${i}`);
+                    if (collision == false) {
+                        wonSoFar = false;
+                    }
+                }
+                if (wonSoFar) {
+                    console.log("WON");
+                    //do something here
+                }
             }
         }
         pop();

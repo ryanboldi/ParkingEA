@@ -65,9 +65,9 @@ class Car {
         //[bottomLeft.x, bottomLeft.y]]
 
         carPoly[0] = topRight;
-        carPoly[1] = topLeft;
-        carPoly[2] = bottomRight;
-        carPoly[3] = bottomLeft;
+        carPoly[1] = bottomRight;
+        carPoly[2] = bottomLeft;
+        carPoly[3] = topLeft;
 
         for (let i = 0; i < carPoly.length; i++) {
             carPoly[i].x += this.x;

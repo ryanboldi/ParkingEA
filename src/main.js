@@ -59,8 +59,8 @@ function topLeftToPoly(arr) {
     let poly = [];
     poly[0] = createVector(x, y);
     poly[1] = createVector(x + w, y);
-    poly[2] = createVector(x, y + h);
-    poly[3] = createVector(x + w, y + h);
+    poly[2] = createVector(x + w, y + h);
+    poly[3] = createVector(x, y + h);
 
     return poly;
 }
