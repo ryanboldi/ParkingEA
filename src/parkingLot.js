@@ -15,12 +15,13 @@ class PARKINGLOT {
 
         }
 
-        this.collisionBoxes = []; //non-car collision boxes
+        this.collisionBoxes = []; //non-car collision boxes, top left corner x, y, w, h
         this.collisionBoxes[0] = [0, 0, 100, 800];
-        this.collisionBoxes[1] = [300, 0, 180, 300];
-        this.collisionBoxes[2] = [300, 500, 180, 300];
-        this.collisionBoxes[3] = [480, 0, 320, 200];
-        this.collisionBoxes[4] = [480, 600, 320, 200];
+        this.collisionBoxes[1] = [300, 0, 140, 300];
+        this.collisionBoxes[2] = [300, 500, 140, 300];
+        this.collisionBoxes[3] = [440, 0, 360, 200];
+        this.collisionBoxes[4] = [440, 600, 360, 200];
+        this.collisionBoxes[5] = [760, 200, 40, 400];
     }
 
     draw() {
@@ -55,5 +56,21 @@ class PARKINGLOT {
             rect(this.collisionBoxes[i][0], this.collisionBoxes[i][1], this.collisionBoxes[i][2], this.collisionBoxes[i][3])
         }
         pop();
+    }
+
+    checkCrash(carPoly) {
+        push();
+        rectMode(CORNER);
+        let collided = false;
+        //checks collision with the world around it
+        for (let i = 0; i < this.collisionBoxes.length; i++) {
+            let hit = collideRectPoly(this.collisionBoxes[i][0], this.collisionBoxes[i][1], this.collisionBoxes[i][2], this.collisionBoxes[i][3], carPoly);
+            if (hit) {
+                collided = true;
+            }
+        }
+        pop();
+
+        //kill the car or do something here
     }
 }

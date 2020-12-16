@@ -17,12 +17,16 @@ class Car {
         if (this.isStatic) {
             fill(255, 0, 0);
         } else {
-            fill(0, 255, 0);
+            fill(0, 255, 0, 50);
+        }
+
+        let poly = this.convertToPoly();
+        for (let i = 0; i < poly.length; i++) {
+            line(this.x, this.y, poly[i].x, poly[i].y);
         }
 
         translate(this.x, this.y);
 
-        strokeWeight(1);
         rotate(this.dir);
         rect(0, 0, this.width, this.height);
         pop();
@@ -46,17 +50,30 @@ class Car {
             this.y += cos(this.dir) * this.movingSpeed;
         }
     }
-
     //returns an array of the real world coords of the car's corners
     convertToPoly() {
+        let carPoly = [];
+
         let topRight = createVector(CAR_WIDTH / 2, CAR_HEIGHT / 2).rotate(this.dir);
         let topLeft = createVector(-CAR_WIDTH / 2, CAR_HEIGHT / 2).rotate(this.dir);
         let bottomRight = createVector(CAR_WIDTH / 2, -CAR_HEIGHT / 2).rotate(this.dir);
         let bottomLeft = createVector(-CAR_WIDTH / 2, -CAR_HEIGHT / 2).rotate(this.dir);
 
-        return ([[topRight.x, topRight.y],
-        [topLeft.x, topLeft.y],
-        [bottomRight.x, bottomRight.y],
-        [bottomLeft.x, bottomLeft.y]]);
+        //[[topRight.x, topRight.y],
+        //[topLeft.x, topLeft.y],
+        //[bottomRight.x, bottomRight.y],
+        //[bottomLeft.x, bottomLeft.y]]
+
+        carPoly[0] = topRight;
+        carPoly[1] = topLeft;
+        carPoly[2] = bottomRight;
+        carPoly[3] = bottomLeft;
+
+        for (let i = 0; i < carPoly.length; i++) {
+            carPoly[i].x += this.x;
+            carPoly[i].y += this.y;
+        }
+
+        return carPoly;
     }
 }
