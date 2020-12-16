@@ -22,15 +22,6 @@ class Car {
 
         translate(this.x, this.y);
 
-        strokeWeight(3);
-        let verts = this.convertToPoly();
-
-        beginShape(POINTS);
-        for (let i = 0; i < verts.length; i++) {
-            vertex(verts[i][0], verts[i][1]);
-        }
-        endShape();
-
         strokeWeight(1);
         rotate(this.dir);
         rect(0, 0, this.width, this.height);

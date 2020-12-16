@@ -43,3 +43,7 @@ function draw() {
     }
     c.move(l, r, u, d);
 }
+
+function mousePressed() {
+    console.log(`x: ${mouseX}, y:${mouseY}`);
+}
