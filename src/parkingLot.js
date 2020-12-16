@@ -45,6 +45,12 @@ class PARKINGLOT {
         }
         fill(0, 144, 0, 40);
         rect(this.winBox[0], this.winBox[1], this.winBox[2], this.winBox[3]);
+
+        stroke(1);
+        let winPoly = topLeftToPoly(this.winBox);
+        for (let i = 0; i < winPoly.length; i++) {
+            line(this.winBox[0] + (this.winBox[2] / 2), this.winBox[1] + (this.winBox[3] / 2), winPoly[i].x, winPoly[i].y);
+        }
         pop();
 
         push();
@@ -89,12 +95,14 @@ class PARKINGLOT {
         } else {
             let won = false;
 
+            let winPoly = topLeftToPoly(this.winBox);
 
+            let hit = collidePolyPoly(carPoly, winPoly, true);
+            if (hit) {
+                console.log("win");
+                won = true;
+            }
         }
-
-
         pop();
-
-
     }
 }

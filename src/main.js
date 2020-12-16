@@ -48,3 +48,19 @@ function draw() {
 function mousePressed() {
     console.log(`x: ${mouseX}, y:${mouseY}`);
 }
+
+
+function topLeftToPoly(arr) {
+    let x = arr[0];
+    let y = arr[1];
+    let w = arr[2];
+    let h = arr[3];
+
+    let poly = [];
+    poly[0] = createVector(x, y);
+    poly[1] = createVector(x + w, y);
+    poly[2] = createVector(x, y + h);
+    poly[3] = createVector(x + w, y + h);
+
+    return poly;
+}
