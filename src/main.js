@@ -10,7 +10,7 @@ let cars = [];
 function setup() {
     createCanvas(WIDTH, HEIGHT);
     environment = new PARKINGLOT(WIDTH, HEIGHT);
-
+    initNeat();
     startEvaluation();
 }
 
@@ -20,9 +20,9 @@ function draw() {
     environment.draw();
 
     for (let c in cars) {
-        c.draw();
-        environment.checkCar(c.convertToPoly());
-        c.think();
+        cars[c].draw();
+        environment.checkCar(cars[c].convertToPoly());
+        cars[c].think();
     }
     //let l = 0,
     //    r = 0,

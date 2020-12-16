@@ -15,6 +15,7 @@ class Car {
         }
 
         this.alive = true;
+        this.eyes = []; //values of the 8 eyes a car will have.
     }
 
     draw() {
@@ -35,13 +36,18 @@ class Car {
 
         rotate(this.dir);
         rect(0, 0, this.width, this.height);
+        //draw first 5 lines
+        for (let i = 0; i < 5; i++) {
+            this.eyes.push(createVector(0, 1).rotate(i * (QUARTER_PI / 9)))
+        }
         pop();
-
-
     }
 
     think() {
+        let input = []; //TODO
+        let output = this.brain.activate(input);
 
+        console.log(output);
     }
 
     move(l, r, u, d) {
