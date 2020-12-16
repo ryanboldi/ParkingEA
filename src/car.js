@@ -1,20 +1,26 @@
 class Car {
-    constructor(x, y, dir, isStatic = false) {
+    constructor(brain = undefined, isStatic = false) {
         this.width = CAR_WIDTH;
         this.height = CAR_HEIGHT;
-
-        this.x = x;
-        this.y = y;
-        this.dir = dir;
+        //WIDTH / 4, HEIGHT / 4 * 3.5, 0
+        this.x = WIDTH / 4;
+        this.y = HEIGHT / 4 * 3.5;
+        this.dir = 0;
         this.turningSpeed = HALF_PI / 60;
         this.movingSpeed = 4;
         this.isStatic = isStatic
+
+        if (brain !== undefined) {
+            this.brain = brain;
+        }
+
+        this.alive = true;
     }
 
     draw() {
         rectMode(CENTER);
         push();
-        if (this.isStatic) {
+        if (this.isStatic || this.alive == false) {
             fill(255, 0, 0);
         } else {
             fill(0, 255, 0, 50);
@@ -31,6 +37,10 @@ class Car {
         rect(0, 0, this.width, this.height);
         pop();
 
+
+    }
+
+    think() {
 
     }
 

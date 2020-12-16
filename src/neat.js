@@ -47,15 +47,12 @@ function initNeat() {
 }
 
 function startEvaluation() {
-    p = [];
-    let i = 0
+    cars = [];
     for (let genome in neat.population) {
         genome = neat.population[genome];
-        p.push(new Player(genome, (2 * BORDER) + (playerSpawnGap / 2) + (i * playerSpawnGap)));
-        i++;
+        cars.push(new Car(genome));
     }
     neat.mutate();
-    frameCounter = 0;
 }
 
 
