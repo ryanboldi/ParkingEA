@@ -96,7 +96,7 @@ class PARKINGLOT {
             let winPoly = topLeftToPoly(this.winBox);
 
             // if the car is colliding or top right corner
-            if (collidePolyPoly(carPoly, winPoly, true) || collidePointPoly(carPoly[0].x, carPoly[0].y, winPoly)) {
+            if (collidePointPoly(carPoly[0].x, carPoly[0].y, winPoly)) {
                 //check that each of the car's 4 corners are inside the win zone
                 let wonSoFar = true;
                 //console.log("collided");
