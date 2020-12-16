@@ -41,6 +41,5 @@ function draw() {
             r = 1;
         }
     }
-    console.log(l, r, u, d);
     c.move(l, r, u, d);
 }

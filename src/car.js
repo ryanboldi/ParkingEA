@@ -6,8 +6,8 @@ class Car {
         this.x = x;
         this.y = y;
         this.dir = dir;
-        this.turningSpeed = HALF_PI / 120;
-        this.movingSpeed = 2;
+        this.turningSpeed = HALF_PI / 60;
+        this.movingSpeed = 4;
         this.isStatic = isStatic
     }
 
@@ -21,9 +21,22 @@ class Car {
         }
 
         translate(this.x, this.y);
+
+        strokeWeight(3);
+        let verts = this.convertToPoly();
+
+        beginShape(POINTS);
+        for (let i = 0; i < verts.length; i++) {
+            vertex(verts[i][0], verts[i][1]);
+        }
+        endShape();
+
+        strokeWeight(1);
         rotate(this.dir);
         rect(0, 0, this.width, this.height);
         pop();
+
+
     }
 
     move(l, r, u, d) {
@@ -41,5 +54,18 @@ class Car {
             this.x -= sin(this.dir) * this.movingSpeed;
             this.y += cos(this.dir) * this.movingSpeed;
         }
+    }
+
+    //returns an array of the real world coords of the car's corners
+    convertToPoly() {
+        let topRight = createVector(CAR_WIDTH / 2, CAR_HEIGHT / 2).rotate(this.dir);
+        let topLeft = createVector(-CAR_WIDTH / 2, CAR_HEIGHT / 2).rotate(this.dir);
+        let bottomRight = createVector(CAR_WIDTH / 2, -CAR_HEIGHT / 2).rotate(this.dir);
+        let bottomLeft = createVector(-CAR_WIDTH / 2, -CAR_HEIGHT / 2).rotate(this.dir);
+
+        return ([[topRight.x, topRight.y],
+        [topLeft.x, topLeft.y],
+        [bottomRight.x, bottomRight.y],
+        [bottomLeft.x, bottomLeft.y]]);
     }
 }
