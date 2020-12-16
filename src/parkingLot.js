@@ -69,6 +69,16 @@ class PARKINGLOT {
                 collided = true;
             }
         }
+        for (let i = 0; i < this.staticCars.length; i++) {
+            let hit = collidePolyPoly(this.staticCars[i].convertToPoly(), carPoly);
+            if (hit) {
+                collided = true;
+            }
+        }
+
+        if (collided) {
+            console.log("CAR CRASHED");
+        }
         pop();
 
         //kill the car or do something here
