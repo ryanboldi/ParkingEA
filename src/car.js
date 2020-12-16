@@ -1,11 +1,20 @@
 class Car {
-    constructor(brain = undefined, isStatic = false) {
+    constructor(brain = undefined, x = undefined, y = undefined, dir = undefined, isStatic = false) {
         this.width = CAR_WIDTH;
         this.height = CAR_HEIGHT;
         //WIDTH / 4, HEIGHT / 4 * 3.5, 0
-        this.x = WIDTH / 4;
-        this.y = HEIGHT / 4 * 3.5;
-        this.dir = 0;
+
+        if (x == undefined) {
+            this.x = WIDTH / 2;
+        }
+        if (y == undefined) {
+            this.y = HEIGHT / 4 * 3.5;
+        }
+
+        if (dir == undefined) {
+            this.dir = 0;
+        }
+
         this.turningSpeed = HALF_PI / 60;
         this.movingSpeed = 4;
         this.isStatic = isStatic
@@ -47,7 +56,7 @@ class Car {
         let input = []; //TODO
         let output = this.brain.activate(input);
 
-        console.log(output);
+        //console.log(output);
     }
 
     move(l, r, u, d) {

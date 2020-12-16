@@ -10,9 +10,8 @@ class PARKINGLOT {
 
         for (let i = 0; i < this.parkingSpaces; i++) {
             if (i !== this.emptySpace) {
-                this.staticCars.push(new Car(this.w - 40 - this.startGap - (this.carGap / 2) - (CAR_HEIGHT / 2), (this.w / 4) + this.startGap + (CAR_WIDTH / 2) + (i * (CAR_WIDTH + this.carGap)), HALF_PI, true))
+                this.staticCars.push(new Car(undefined, this.w - 40 - this.startGap - (this.carGap / 2) - (CAR_HEIGHT / 2), (this.w / 4) + this.startGap + (CAR_WIDTH / 2) + (i * (CAR_WIDTH + this.carGap)), HALF_PI, true));
             }
-
         }
 
         this.collisionBoxes = []; //non-car collision boxes, top left corner x, y, w, h
