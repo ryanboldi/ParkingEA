@@ -6,6 +6,8 @@ class Car {
         this.x = x;
         this.y = y;
         this.dir = dir;
+        this.turningSpeed = HALF_PI / 120;
+        this.movingSpeed = 2;
         this.isStatic = isStatic
     }
 
@@ -24,5 +26,20 @@ class Car {
         pop();
     }
 
-
+    move(l, r, u, d) {
+        if (l == 1) {
+            this.dir -= this.turningSpeed;
+        }
+        if (r == 1) {
+            this.dir += this.turningSpeed;
+        }
+        if (u == 1) {
+            this.x += sin(this.dir) * this.movingSpeed;
+            this.y -= cos(this.dir) * this.movingSpeed;
+        }
+        if (d == 1) {
+            this.x -= sin(this.dir) * this.movingSpeed;
+            this.y += cos(this.dir) * this.movingSpeed;
+        }
+    }
 }

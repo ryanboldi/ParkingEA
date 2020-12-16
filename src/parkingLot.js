@@ -32,7 +32,7 @@ class PARKINGLOT {
         }
 
         for (let i = 0; i < this.collisionBoxes.length; i++) {
-
+            break;
         }
     }
 }

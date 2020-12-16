@@ -21,4 +21,26 @@ function draw() {
     background(220);
     environment.draw();
     c.draw();
+
+    let l = 0,
+        r = 0,
+        u = 0,
+        d = 0;
+
+    if (keyIsPressed) {
+        if (keyIsDown(UP_ARROW)) {
+            u = 1;
+        }
+        if (keyIsDown(DOWN_ARROW)) {
+            d = 1;
+        }
+        if (keyIsDown(LEFT_ARROW)) {
+            l = 1;
+        }
+        if (keyIsDown(RIGHT_ARROW)) {
+            r = 1;
+        }
+    }
+    console.log(l, r, u, d);
+    c.move(l, r, u, d);
 }
