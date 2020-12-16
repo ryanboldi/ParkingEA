@@ -1,7 +1,7 @@
 class Car {
     constructor(x, y, dir, isStatic = false) {
-        this.width = 60;
-        this.height = 100;
+        this.width = CAR_WIDTH;
+        this.height = CAR_HEIGHT;
 
         this.x = x;
         this.y = y;

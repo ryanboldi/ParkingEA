@@ -1,6 +1,9 @@
 const WIDTH = 800,
     HEIGHT = 800;
 
+const CAR_WIDTH = 60,
+    CAR_HEIGHT = 100;
+
 let c;
 let environment;
 
