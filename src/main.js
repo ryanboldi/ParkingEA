@@ -21,7 +21,7 @@ function draw() {
     background(220);
     environment.draw();
     c.draw();
-    environment.checkCrash(c.convertToPoly());
+    environment.checkCar(c.convertToPoly());
 
     let l = 0,
         r = 0,

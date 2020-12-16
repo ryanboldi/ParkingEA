@@ -22,6 +22,9 @@ class PARKINGLOT {
         this.collisionBoxes[3] = [440, 0, 360, 200];
         this.collisionBoxes[4] = [440, 600, 360, 200];
         this.collisionBoxes[5] = [760, 200, 40, 400];
+
+        //for this to be a successfull parking, our car needs to be wholly encapsulated by this winbox
+        this.winBox = [this.w - this.carGap - 40 - CAR_HEIGHT - (this.carGap / 2) - this.startGap, this.h / 4 + (this.carGap / 2) + this.startGap + ((this.emptySpace) * (this.carGap + CAR_WIDTH)) - this.carGap, CAR_HEIGHT + 2 * this.carGap, CAR_WIDTH + this.carGap]//depends on the parking space
     }
 
     draw() {
@@ -31,6 +34,17 @@ class PARKINGLOT {
         rect(this.w / 4, this.h / 2, this.w / 4, this.h);
         rect(this.w / 2, this.h / 2, 0.75 * this.w, this.w / 4);
         rect(this.w * 0.75, this.h / 2, this.w * 0.4, this.h / 2);
+        pop();
+
+        push();
+        rectMode(CORNER);
+        noStroke();
+        fill(144, 0, 0, 10);
+        for (let i = 0; i < this.collisionBoxes.length; i++) {
+            rect(this.collisionBoxes[i][0], this.collisionBoxes[i][1], this.collisionBoxes[i][2], this.collisionBoxes[i][3]);
+        }
+        fill(0, 144, 0, 40);
+        rect(this.winBox[0], this.winBox[1], this.winBox[2], this.winBox[3]);
         pop();
 
         push();
@@ -48,17 +62,10 @@ class PARKINGLOT {
             this.staticCars[i].draw();
         }
 
-        push();
-        rectMode(CORNER);
-        fill(144, 0, 122, 10);
-        noStroke();
-        for (let i = 0; i < this.collisionBoxes.length; i++) {
-            rect(this.collisionBoxes[i][0], this.collisionBoxes[i][1], this.collisionBoxes[i][2], this.collisionBoxes[i][3])
-        }
-        pop();
+
     }
 
-    checkCrash(carPoly) {
+    checkCar(carPoly) {
         push();
         rectMode(CORNER);
         let collided = false;
@@ -77,10 +84,17 @@ class PARKINGLOT {
         }
 
         if (collided) {
+            //kill the car or do something here
             console.log("CAR CRASHED");
+        } else {
+            let won = false;
+
+
         }
+
+
         pop();
 
-        //kill the car or do something here
+
     }
 }
