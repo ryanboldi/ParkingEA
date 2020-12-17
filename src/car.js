@@ -78,6 +78,7 @@ class Car {
 
     think() {
         let input = []; //TODO
+        console.log(this.eyeValues);
         let output = this.brain.activate(input);
 
         //console.log(output);

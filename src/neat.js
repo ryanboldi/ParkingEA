@@ -7,7 +7,7 @@ let Architect = neataptic.Architect;
 Config.warnings = false;
 
 /* genetic algorithm settings */
-let PopSize = 100;
+let PopSize = 1;
 let ITERATIONS = 600; //how many frames per generation maximum
 let MUTATION_RATE = 0.1;
 let ELITISM = Math.round(0.1 * PopSize);

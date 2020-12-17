@@ -117,7 +117,11 @@ class PARKINGLOT {
     }
 
     checkLineCollision(lineX1, lineY1, lineX2, lineY2) {
+        strokeWeight(3);
         line(lineX1, lineY1, lineX2, lineY2);
+        strokeWeight(1);
+
+        let closestDistAcrossBoxes = CAR_EYE_LENGTH ** 2;
         //checks if a line has collided with this parking lot
         for (let i = 0; i < this.collisionBoxes.length; i++) {
             let hit = collideLineRect(lineX1, lineY1, lineX2, lineY2, this.collisionBoxes[i][0], this.collisionBoxes[i][1], this.collisionBoxes[i][2], this.collisionBoxes[i][3]);
@@ -132,10 +136,13 @@ class PARKINGLOT {
                         }
                     }
                 }
-                return closestDist
-            } else {
-                //console.log("no hits happened");
+                if (closestDist < closestDistAcrossBoxes) {
+                    closestDistAcrossBoxes = closestDist;
+                }
             }
         }
+
+        return Math.sqrt((CAR_EYE_LENGTH ** 2) - closestDistAcrossBoxes);
+
     }
 }
