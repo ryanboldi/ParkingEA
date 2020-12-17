@@ -21,6 +21,8 @@ class PARKINGLOT {
         this.collisionBoxes[3] = [440, 0, 360, 200];
         this.collisionBoxes[4] = [440, 600, 360, 200];
         this.collisionBoxes[5] = [760, 200, 40, 400];
+        this.collisionBoxes[6] = [0, 800, 800, 1];
+        this.collisionBoxes[7] = [0, 0, 800, 1];
 
         //for this to be a successfull parking, our car needs to be wholly encapsulated by this winbox
         this.winBox = [this.w - this.carGap - 40 - CAR_HEIGHT - (this.carGap / 2) - this.startGap, this.h / 4 + (this.carGap / 2) + this.startGap + ((this.emptySpace) * (this.carGap + CAR_WIDTH)) - this.carGap, CAR_HEIGHT + 2 * this.carGap, CAR_WIDTH + this.carGap]//depends on the parking space
@@ -90,7 +92,7 @@ class PARKINGLOT {
 
         if (collided) {
             //kill the car or do something here
-            console.log("CAR CRASHED");
+            return ("DEATH");
         } else {
             let winPoly = topLeftToPoly(this.winBox);
 
@@ -108,19 +110,20 @@ class PARKINGLOT {
                     }
                 }
                 if (wonSoFar) {
-                    console.log("WON");
-                    //do something here
+                    return ("WIN");
                 }
             }
         }
         pop();
     }
 
-    checkLineCollision(lineX1, lineY1, lineX2, lineY2) {
-        strokeWeight(3);
-        line(lineX1, lineY1, lineX2, lineY2);
-        strokeWeight(1);
+    getDistToGoal(x, y) {
+        let winBoxCenterX = this.winBox[0] + (this.winBox[2] / 2);
+        let winBoxCenterY = this.winBox[1] + (this.winBox[3] / 2);
+        return (Math.sqrt((winBoxCenterX - x) ** 2 + (winBoxCenterY - y) ** 2));
+    }
 
+    checkLineCollision(lineX1, lineY1, lineX2, lineY2) {
         let closestDistAcrossBoxes = CAR_EYE_LENGTH ** 2;
         //checks if a line has collided with this parking lot
         for (let i = 0; i < this.collisionBoxes.length; i++) {
@@ -141,8 +144,6 @@ class PARKINGLOT {
                 }
             }
         }
-
         return Math.sqrt((CAR_EYE_LENGTH ** 2) - closestDistAcrossBoxes);
-
     }
 }

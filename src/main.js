@@ -24,13 +24,25 @@ function draw() {
 
     for (let c in cars) {
         cars[c].draw();
-        environment.checkCar(cars[c].convertToPoly());
-        for (let eye in cars[c].eyes) {
-            //set eye value to the environment's check collision of this line
-            //console.log(cars[c].eyes);
-            cars[c].eyeValues[eye] = environment.checkLineCollision(cars[c].x, cars[c].y, cars[c].eyes[eye].x + cars[c].x, cars[c].eyes[eye].y + cars[c].y);
+        if (cars[c].alive) {
+            result = environment.checkCar(cars[c].convertToPoly());
+            if (result == "DEATH") {
+                cars[c].alive = false;
+            } else if (result == "WON") {
+                cars[c].brain.score = 100;
+            } else {
+                let dist = environment.getDistToGoal(cars[c].x, cars[c].y);
+                //scale between 0 and 50
+                cars[c].brain.score = normalizeBetweenTwoRanges(dist, 0, 1132, 0, 50);
+            }
+
+            for (let eye in cars[c].eyes) {
+                //set eye value to the environment's check collision of this line
+                //console.log(cars[c].eyes);
+                cars[c].eyeValues[eye] = environment.checkLineCollision(cars[c].x, cars[c].y, cars[c].eyes[eye].x + cars[c].x, cars[c].eyes[eye].y + cars[c].y);
+            }
+            cars[c].think();
         }
-        cars[c].think();
     }
 
     let l = 0,
@@ -58,6 +70,10 @@ function draw() {
 function mousePressed() {
     //console.log(`x: ${mouseX}, y:${mouseY}`);
 }
+
+let normalizeBetweenTwoRanges = (val, minVal, maxVal, newMin, newMax) => {
+    return newMin + (val - minVal) * (newMax - newMin) / (maxVal - minVal);
+};
 
 
 function topLeftToPoly(arr) {

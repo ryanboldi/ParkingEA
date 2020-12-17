@@ -28,6 +28,7 @@ class Car {
 
         if (brain !== undefined) {
             this.brain = brain;
+            this.brain.score = 0;
         }
 
         this.alive = true;
@@ -77,11 +78,16 @@ class Car {
     }
 
     think() {
-        let input = []; //TODO
-        console.log(this.eyeValues);
+        let input = this.eyeValues; //TODO
         let output = this.brain.activate(input);
 
-        //console.log(output);
+        //if outputs are bigger than 0.5, set them, to 1;
+        let l = ((output[0] > 0.5) ? 1 : 0);
+        let r = ((output[1] > 0.5) ? 1 : 0);
+        let u = ((output[2] > 0.5) ? 1 : 0);
+        let d = ((output[3] > 0.5) ? 1 : 0);
+
+        this.move(l, r, u, d);
     }
 
     move(l, r, u, d) {
