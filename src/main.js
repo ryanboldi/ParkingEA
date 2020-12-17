@@ -40,7 +40,7 @@ function draw() {
             } else {
                 let dist = environment.getDistToGoal(cars[c].x, cars[c].y);
                 //scale between 0 and 50
-                cars[c].brain.score = normalizeBetweenTwoRanges(dist, 0, 1132, 0, 50);
+                cars[c].brain.score = normalizeBetweenTwoRanges(dist, 0, 1000, 100, 0);
             }
 
             for (let eye in cars[c].eyes) {

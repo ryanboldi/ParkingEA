@@ -8,8 +8,8 @@ Config.warnings = false;
 
 /* genetic algorithm settings */
 let PopSize = 100;
-let ITERATIONS = 600; //how many frames per generation maximum
-let MUTATION_RATE = 0.1;
+let ITERATIONS = 100; //how many frames per generation maximum
+let MUTATION_RATE = 0.2;
 let ELITISM = Math.round(0.1 * PopSize);
 let START_HIDDEN_SIZE = 6;
 
@@ -57,6 +57,9 @@ function startEvaluation() {
 
 
 function endEvaluation() {
+    if (ITERATIONS < 600) {
+        ITERATIONS += 10;
+    }
     console.log('Generation: ', neat.generation, ' - average score: ', neat.getAverage());
     console.log('Generation highest score', neat.getFittest().score);
 
