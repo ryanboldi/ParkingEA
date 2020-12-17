@@ -3,7 +3,9 @@ const WIDTH = 800,
 
 const CAR_WIDTH = 60,
     CAR_HEIGHT = 100,
-    CAR_EYE_LENGTH = 80;
+    CAR_EYE_LENGTH = 150;
+
+const DRAW_EYES = false;
 
 let environment;
 let cars = [];
@@ -25,7 +27,7 @@ function draw() {
         environment.checkCar(cars[c].convertToPoly());
         for (let eye in cars[c].eyes) {
             //set eye value to the environment's check collision of this line
-            console.log(cars[c].eyes);
+            //console.log(cars[c].eyes);
             cars[c].eyeValues[eye] = environment.checkLineCollision(cars[c].x, cars[c].y, cars[c].eyes[eye].x + cars[c].x, cars[c].eyes[eye].y + cars[c].y);
         }
         cars[c].think();

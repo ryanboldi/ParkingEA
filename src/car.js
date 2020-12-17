@@ -62,8 +62,10 @@ class Car {
             this.eyes.push(createVector(0, CAR_EYE_LENGTH).rotate(this.dir + -HALF_PI));
             this.eyes.push(createVector(0, CAR_EYE_LENGTH).rotate(this.dir + 0));
 
-            for (let i = 0; i < this.eyes.length; i++) {
-                line(0, 0, this.eyes[i].x, this.eyes[i].y);
+            if (DRAW_EYES) {
+                for (let i = 0; i < this.eyes.length; i++) {
+                    line(0, 0, this.eyes[i].x, this.eyes[i].y);
+                }
             }
         }
 

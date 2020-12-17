@@ -123,11 +123,18 @@ class PARKINGLOT {
             let hit = collideLineRect(lineX1, lineY1, lineX2, lineY2, this.collisionBoxes[i][0], this.collisionBoxes[i][1], this.collisionBoxes[i][2], this.collisionBoxes[i][3]);
             if (hit) {
                 let hitPos = collideLineRect(lineX1, lineY1, lineX2, lineY2, this.collisionBoxes[i][0], this.collisionBoxes[i][1], this.collisionBoxes[i][2], this.collisionBoxes[i][3], true);
-
-
-
+                let closestDist = CAR_EYE_LENGTH ** 2;
+                for (let side in hitPos) {
+                    if (hitPos !== false) {
+                        let hitDistanceSquared = ((hitPos[side].x - lineX1) ** 2 + (hitPos[side].y - lineY1) ** 2);
+                        if (hitDistanceSquared < closestDist) {
+                            closestDist = hitDistanceSquared;
+                        }
+                    }
+                }
+                return closestDist
             } else {
-                //console.log(``);
+                //console.log("no hits happened");
             }
         }
     }
