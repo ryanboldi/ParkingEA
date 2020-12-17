@@ -31,7 +31,8 @@ class Car {
         }
 
         this.alive = true;
-        this.eyes = []; //values of the 8 eyes a car will have.
+        this.eyes = []; //acutal vectors of these eyes
+        this.eyeValues = []; //values of the 8 eyes a car will have.
     }
 
     draw() {
@@ -52,6 +53,8 @@ class Car {
 
         rotate(this.dir);
         rect(0, 0, this.width, this.height);
+
+        this.eyes = [];
 
         if (!this.isStatic) {
             //draw first 5 lines
