@@ -7,7 +7,7 @@ let Architect = neataptic.Architect;
 Config.warnings = false;
 
 /* genetic algorithm settings */
-let PopSize = 100;
+let PopSize = 20;
 let ITERATIONS = 600; //how many frames per generation maximum
 let MUTATION_RATE = 0.1;
 let ELITISM = Math.round(0.1 * PopSize);
@@ -19,7 +19,7 @@ let neat;
 /*construct GA*/
 function initNeat() {
     neat = new Neat(
-        8, 4,
+        9, 4,
         null,
         {
             mutation: [
@@ -40,7 +40,7 @@ function initNeat() {
             popsize: PopSize,
             mutationRate: MUTATION_RATE,
             elitism: ELITISM,
-            network: new Architect.Random(8, START_HIDDEN_SIZE, 4)
+            network: new Architect.Random(9, START_HIDDEN_SIZE, 4)
         }
 
     );
@@ -67,7 +67,7 @@ function endEvaluation() {
     }
 
     neat.sort();
-    var newPopulation = [];
+    let newPopulation = [];
 
     //Elitism
     for (let i = 0; i < neat.elitism; i++) {

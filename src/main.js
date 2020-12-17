@@ -2,7 +2,8 @@ const WIDTH = 800,
     HEIGHT = 800;
 
 const CAR_WIDTH = 60,
-    CAR_HEIGHT = 100;
+    CAR_HEIGHT = 100,
+    CAR_EYE_LENGTH = 80;
 
 let environment;
 let cars = [];
@@ -24,26 +25,27 @@ function draw() {
         environment.checkCar(cars[c].convertToPoly());
         cars[c].think();
     }
-    //let l = 0,
-    //    r = 0,
-    //    u = 0,
-    //    d = 0;
 
-    //if (keyIsPressed) {
-    //    if (keyIsDown(UP_ARROW)) {
-    //        u = 1;
-    //    }
-    //    if (keyIsDown(DOWN_ARROW)) {
-    //        d = 1;
-    //   }
-    //   if (keyIsDown(LEFT_ARROW)) {
-    //        l = 1;
-    //    }
-    //    if (keyIsDown(RIGHT_ARROW)) {
-    //        r = 1;
-    //    }
-    // }
-    //c.move(l, r, u, d);
+    let l = 0,
+        r = 0,
+        u = 0,
+        d = 0;
+
+    if (keyIsPressed) {
+        if (keyIsDown(UP_ARROW)) {
+            u = 1;
+        }
+        if (keyIsDown(DOWN_ARROW)) {
+            d = 1;
+        }
+        if (keyIsDown(LEFT_ARROW)) {
+            l = 1;
+        }
+        if (keyIsDown(RIGHT_ARROW)) {
+            r = 1;
+        }
+    }
+    cars[0].move(l, r, u, d);
 }
 
 function mousePressed() {
