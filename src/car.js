@@ -5,7 +5,7 @@ class Car {
         //WIDTH / 4, HEIGHT / 4 * 3.5, 0
 
         if (x == undefined) {
-            this.x = WIDTH / 2;
+            this.x = WIDTH / 4;
         }
         if (y == undefined) {
             this.y = HEIGHT / 4 * 3.5;
