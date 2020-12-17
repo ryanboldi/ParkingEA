@@ -32,6 +32,7 @@ class Car {
         }
 
         this.alive = true;
+        this.won = false;
         this.eyes = []; //acutal vectors of these eyes
         this.eyeValues = []; //values of the 8 eyes a car will have.
     }
@@ -39,8 +40,12 @@ class Car {
     draw() {
         rectMode(CENTER);
         push();
-        if (this.isStatic || this.alive == false) {
+        if (this.isStatic) {
             fill(255, 0, 0);
+        } else if (this.alive == false) {
+            fill(255, 0, 0, 50);
+        } else if (this.won) {
+            fill(0, 255, 0, 70);
         } else {
             fill(0, 255, 0, 50);
         }

@@ -7,6 +7,8 @@ const CAR_WIDTH = 60,
 
 const DRAW_EYES = false;
 
+
+let frameCounter = 0;
 let environment;
 let cars = [];
 
@@ -19,6 +21,7 @@ function setup() {
 
 
 function draw() {
+    frameCounter++;
     background(220);
     environment.draw();
 
@@ -28,8 +31,12 @@ function draw() {
             result = environment.checkCar(cars[c].convertToPoly());
             if (result == "DEATH") {
                 cars[c].alive = false;
+                let dist = environment.getDistToGoal(cars[c].x, cars[c].y);
+                //scale between 0 and 50
+                cars[c].brain.score = normalizeBetweenTwoRanges(dist, 0, 1132, 0, 50);
             } else if (result == "WON") {
                 cars[c].brain.score = 100;
+                cars[c].won = true;
             } else {
                 let dist = environment.getDistToGoal(cars[c].x, cars[c].y);
                 //scale between 0 and 50
@@ -65,6 +72,22 @@ function draw() {
         }
     }
     cars[0].move(l, r, u, d);
+
+
+    allDone = true;
+    for (let c in cars) {
+        if (cars[c].alive || cars[c].won == false) {
+            allDone = false;
+        }
+    }
+    if (allDone) {
+        endEvaluation();
+    }
+
+    if (frameCounter == ITERATIONS) {
+        endEvaluation();
+        frameCounter = 0;
+    }
 }
 
 function mousePressed() {
