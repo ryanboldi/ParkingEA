@@ -115,4 +115,20 @@ class PARKINGLOT {
         }
         pop();
     }
+
+    checkLineCollision(lineX1, lineY1, lineX2, lineY2) {
+        line(lineX1, lineY1, lineX2, lineY2);
+        //checks if a line has collided with this parking lot
+        for (let i = 0; i < this.collisionBoxes.length; i++) {
+            let hit = collideLineRect(lineX1, lineY1, lineX2, lineY2, this.collisionBoxes[i][0], this.collisionBoxes[i][1], this.collisionBoxes[i][2], this.collisionBoxes[i][3]);
+            if (hit) {
+                let hitPos = collideLineRect(lineX1, lineY1, lineX2, lineY2, this.collisionBoxes[i][0], this.collisionBoxes[i][1], this.collisionBoxes[i][2], this.collisionBoxes[i][3], true);
+
+
+
+            } else {
+                //console.log(``);
+            }
+        }
+    }
 }

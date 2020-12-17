@@ -23,6 +23,11 @@ function draw() {
     for (let c in cars) {
         cars[c].draw();
         environment.checkCar(cars[c].convertToPoly());
+        for (let eye in cars[c].eyes) {
+            //set eye value to the environment's check collision of this line
+            console.log(cars[c].eyes);
+            cars[c].eyeValues[eye] = environment.checkLineCollision(cars[c].x, cars[c].y, cars[c].eyes[eye].x + cars[c].x, cars[c].eyes[eye].y + cars[c].y);
+        }
         cars[c].think();
     }
 

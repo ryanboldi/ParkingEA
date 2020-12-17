@@ -51,24 +51,26 @@ class Car {
 
         translate(this.x, this.y);
 
-        rotate(this.dir);
-        rect(0, 0, this.width, this.height);
-
         this.eyes = [];
 
         if (!this.isStatic) {
             //draw first 5 lines
             for (let i = 0; i < 5; i++) {
-                this.eyes.push(createVector(0, CAR_EYE_LENGTH).rotate(PI + - QUARTER_PI + (i * QUARTER_PI / 2)));
+                this.eyes.push(createVector(0, CAR_EYE_LENGTH).rotate(this.dir + PI + - QUARTER_PI + (i * QUARTER_PI / 2)));
             }
-            this.eyes.push(createVector(0, CAR_EYE_LENGTH).rotate(HALF_PI));
-            this.eyes.push(createVector(0, CAR_EYE_LENGTH).rotate(-HALF_PI));
-            this.eyes.push(createVector(0, CAR_EYE_LENGTH).rotate(0));
+            this.eyes.push(createVector(0, CAR_EYE_LENGTH).rotate(this.dir + HALF_PI));
+            this.eyes.push(createVector(0, CAR_EYE_LENGTH).rotate(this.dir + -HALF_PI));
+            this.eyes.push(createVector(0, CAR_EYE_LENGTH).rotate(this.dir + 0));
 
             for (let i = 0; i < this.eyes.length; i++) {
                 line(0, 0, this.eyes[i].x, this.eyes[i].y);
             }
         }
+
+        rotate(this.dir);
+        rect(0, 0, this.width, this.height);
+
+
         pop();
     }
 
